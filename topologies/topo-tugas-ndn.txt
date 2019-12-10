@@ -1,0 +1,69 @@
+router
+
+# each line in this section represents one router and should have the following data
+# node  comment     lat         lon
+
+# Main Routers
+London          NA                  3045536.346353     -3071372.468112
+China           est. in Xi'an       2887406.599271     5870571.262718
+Taipei          NA                  1831866.878385     7658533.911713
+HongKong        NA                  2951032.552381		7739336.973149
+Seoul           NA                  879063.00703		6033129.218678
+Nagoya          NA                  -200196.005776		6420308.41665
+Osaka           NA                  -39177.199213		6487459.196223
+Tokyo           NA                  -467835.932312		6357041.875387
+Chennai   NA                  		8032965.140311		5638962.574839
+Bangkok     NA           			5493241.903236		7990625.003202
+KL             NA                  6425064.770125		9750416.02026
+Singapore    NA                 	6260864.315911		10298932.436791
+Jakarta     NA                  	10631337.72056		-3187329.515446
+Manila     NA                  		2330142.074277		9262998.376955
+Sydney       NA                  	-1842058.899031		6336692.897898
+Brisbane     NA                  	-2323832.007218		7141415.392962
+Adelaide        NA                  -405209.188499		6440615.617743
+Melbourne       NA                  -1049097.00333		5972274.827028
+Perth        NA                  	2251265.077298		6486616.401321
+Auckland        NA                  -3961108.344492		4760517.651145
+SantaClara      NA                  -5967175.894832		-1382348.93329
+LA              NA                  -6294182.566956		-1895292.417017
+Tribeca         NA                  -2754900.664869		-4968336.216688
+SanJose         NA                  -5967414.80739		-1390198.08823
+Ashburn         NA                 -3169118.023439		-4977010.467759
+NewYork         NA                  -2753608.885076		-4971733.976325
+
+# Peers
+
+# link section defines point-to-point links between nodes and characteristics of these links
+link
+
+# Each line should be in the following format (only first two are required, the rest can be omitted)
+# srcNode   dstNode     bandwidth   metric  delay   queue
+# bandwidth: link bandwidth
+# metric: routing metric
+# delay:  link delay
+# queue:  MaxPackets for transmission queue on the link (both directions)
+# 
+## JAPAN
+Nagoya          Osaka           5Gbps        1       0.581533254ms    10
+Tokyo           Osaka           5Gbps        1       1.493530445ms    10
+Tokyo           Seoul           10Gbps       1       4.617666753ms    10
+Tokyo           Taipei          10Gbps       1       8.808149344ms	  10
+Tokyo           Manila          5Gbps        1       13.44671133ms	  10
+Tokyo           Singapore       10Gbps       1      25.99442424ms 		10
+Tokyo           SanJose         10Gbps       1       31.66931478ms 		10
+Tokyo           LA              10Gbps       1       33.67282722ms 		10
+Tokyo           Brisbane        10Gbps       1      6.716450158ms	 10
+Tokyo           HongKong        10Gbps       1       12.29245543ms 		10
+Singapore 		KL             	10Gbps       1       1.908553985ms 		10
+KL              Bangkok   		10Gbps       1       6.637568396ms		10
+Bangkok   		Manila   		10Gbps   	 1   	  11.36472834ms		10
+Singapore  		Jakarta      	10Gbps       1       47.25584023ms  10
+Singapore  		Chennai  		 5Gbps       1       16.61848383ms   10
+SantaClara      LA              10Gbps       1       2.02770911ms    10
+LA              Ashburn         10Gbps       1       14.62988363ms    10
+LA              NewYork         10Gbps       1       15.63477416ms    10
+Sydney          Brisbane        10Gbps       1       3.126381689ms    10
+Sydney          Auckland        10Gbps       1       8.803218452ms    10
+Sydney          Perth           10Gbps       1       13.6535621ms    10
+Sydney          Melbourne       10Gbps       1       2.908969077ms   10
+Sydney          Adelaide        5Gbps        1       4.802010022ms   10
