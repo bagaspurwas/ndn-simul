@@ -1,0 +1,16 @@
+Parameter:
+- Interest/Second: 10000 (scaled from 100,000,000, 1/10000)
+- Payload Size: 1024
+- Cache Size: 2048
+- Link Speed: 1Mbps/512Kbps (Scaled down from 10Gbps, 1/10000)
+- Max link queue: 10 (Scaled down from 100,000 1/10000)
+- Delay: speed of light/distance
+
+
+Steps:
+- Run the simulation using default metric collector
+- After the simulation is finished check for the result in defined folder
+- Run python script to visualize the data using pandas and matplotlib
+  The python scripts are included in the project folder
+- Identify each node graph for each parameter simulated (rate, delay)
+- Save the graph with the most significant difference between IP and NDN
