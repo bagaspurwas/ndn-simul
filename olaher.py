@@ -20,7 +20,12 @@ except IOError:
 
 nodeList = ndnDF["delay"]["Node"].unique()
 
-'''
+for key in ndnDF:
+    print(ndnDF[key].head(10))
+
+fig = plt.figure()
+index = 0
+
 for node in nodeList:
     ndndelay = ndnDF["delay"].loc[
             (ndnDF["delay"]["Node"] == node) &
@@ -33,13 +38,19 @@ for node in nodeList:
             #(ipDF["delay"]["DelayS"] != 0)
             ]
 
-    fig, ax = plt.subplots(num=node)
-    ax.plot(ndndelay["DelayS"], label='NDN delay (s)', linewidth=0.5)
-    ax.plot(ipdelay["DelayS"], label='IP delay (s)', linewidth=0.5)
-    legend = ax.legend(loc='upper center', shadow=True, fontsize='small')
-    legend.get_frame().set_facecolor('C0')
+    ax = plt.subplot2grid((4,4), (index // 4, index % 4), rowspan=1)
+    ax.set_title(node, dict(fontsize=9))
+    ax.tick_params(labelsize=9)
+    ax.plot(ndndelay["DelayS"], label='NDN delay (s)' 
+            if index == 0 else '', linewidth=0.5)
+    ax.plot(ipdelay["DelayS"], label='IP delay (s)' 
+            if index == 0 else '', linewidth=0.5)
+    index += 1
 
+legend = fig.legend(loc='upper center', shadow=True, fontsize='x-small')
 
+fig_rate  = plt.figure()
+index = 0
 for node in nodeList:
     ndnrate = ndnDF["rate"].loc[
             (ndnDF["rate"]["Node"] == node)
@@ -48,12 +59,20 @@ for node in nodeList:
             (ipDF["rate"]["Node"] == node)
             ]
 
-    fig_rate, ax_rate = plt.subplots(num=node)
+    ax_rate = plt.subplot2grid((4,4), (index // 4, index % 4), rowspan=1, label=node)
+    ax_rate.set_title(node,dict(fontsize=9))
+    ax_rate.tick_params(labelsize=9)
+    ax_rate.plot(ndnrate["Kilobytes"], marker='+', linewidth=0, 
+                 label='NDN rate (Kb)' if index == 0 else '')
+    ax_rate.plot(iprate["Kilobytes"], marker='o', linewidth=0, 
+                 label='IP rate (Kb)' if index == 0 else '')
+    
+    index += 1
 
-    ax_rate.plot(ndnrate["Kilobytes"], marker='+', linewidth=0, label='NDN rate (Kb)')
-    ax_rate.plot(iprate["Kilobytes"], marker='o', linewidth=0, label='IP rate (Kb)')
-    legend = ax_rate.legend(loc='upper center', shadow=True, fontsize='small')
-'''
+legend = fig_rate.legend(loc='upper center', shadow=True, fontsize='x-small')
+
+fig_drop = plt.figure()
+index = 0
 
 for node in nodeList:
     ndndrop = ndnDF["packetDrop"].loc[
@@ -63,10 +82,16 @@ for node in nodeList:
             (ipDF["packetDrop"]["Node"] == node)
             ]
 
-    fig_drop, ax_drop = plt.subplots(num=node)
+    ax_drop = plt.subplot2grid((4,4), (index // 4, index % 4), rowspan=1, label=node)
+    ax_drop.set_title(node, dict(fontsize=9))
+    ax_drop.tick_params(labelsize=9)
+    ax_drop.plot(ndndrop["Packets"], marker='+', linewidth=0, 
+                 label='NDN packet drop (count)' if index == 0 else '')
+    ax_drop.plot(ipdrop["Packets"], marker='o', linewidth=0, 
+                 label='IP packet drop (count)' if index == 0 else '')
 
-    ax_drop.plot(ndndrop["Packets"], marker='+', linewidth=0, label='NDN packet drop (count)')
-    ax_drop.plot(ipdrop["Packets"], marker='o', linewidth=0, label='IP packet drop (count)')
-    legend = ax_drop.legend(loc='upper center', shadow=True, fontsize='small')
+    index += 1
+
+legend = fig_drop.legend(loc='upper center', shadow=True, fontsize='x-small')
 
 plt.show()
